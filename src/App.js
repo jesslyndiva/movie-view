@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import createAxiosInstance from './Service/AxiosClient';
+import Home from './Page/Home/Home.component';
+import Detail from './Page/Detail/Detail.component';
 import './App.css';
+import './styles/global.css';
 
 function App() {
+  const axios = createAxiosInstance();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home axios={axios} />} />
+        <Route path="/detail" element={<Detail axios={axios} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
